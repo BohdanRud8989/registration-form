@@ -47,11 +47,11 @@ export const PAYMENT_METHOD_SCHEMA = yup
                     then: (schema) => schema.required('PayPal email is required'),
                     otherwise: (schema) => schema.notRequired(),
                 }),
-            cardNumber: yup.number('Invalid card number').when('type', {
+            cardNumber: yup.string().when('type', {
                 is: (val) => val === 'cc',
                 then: (schema) =>
                     schema
-                        .moreThan(13, 'Card number must be min 13 characters long')
+                        .matches(/^\d{16}$/, 'Credit card number must be 16 digits long')
                         .required('Credit card is required'),
                 otherwise: (schema) => schema.notRequired(),
             }),

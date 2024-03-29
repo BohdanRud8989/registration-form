@@ -7,8 +7,7 @@ import {
     CredentialsForm,
     PaymentForm,
 } from './components';
-
-import styles from './app.module.css';
+import { CenteredLayout } from './layouts';
 
 function App() {
     const [currentStep, setCurrentStep] = useState(RegistrationSteps.FULL_NAME);
@@ -27,7 +26,10 @@ function App() {
     const validateFullSchema = useCallback(async (newValue) => {
         try {
             await FULL_REGISTRATION_SCHEMA.validate(newValue, { abortEarly: false });
-            console.log('App: Validation successful: newValue: ', newValue);
+            const { fullName, ...rest } = newValue
+            const [firstName, lastName] = fullName.split(' ');
+
+            console.log('App: Validation successful: result: ', { firstName, lastName,...rest });
         } catch (error) {
             if (error instanceof yup.ValidationError) {
                 console.error('App: Validation error:', error.errors.join(', '));
@@ -63,7 +65,7 @@ function App() {
     );
 
     return (
-        <section className={styles.container}>
+        <CenteredLayout>
             {(() => {
                 switch (currentStep) {
                     case RegistrationSteps.FULL_NAME:
@@ -106,7 +108,7 @@ function App() {
                         return null;
                 }
             })()}
-        </section>
+        </CenteredLayout>
     );
 }
 

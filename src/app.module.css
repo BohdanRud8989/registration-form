@@ -1,0 +1,22 @@
+.container {
+  height: 100vh;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.actionBtn {
+  width: 200px;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .main {
+    padding: 0 16px;
+  }
+}

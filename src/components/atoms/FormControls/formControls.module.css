@@ -1,0 +1,16 @@
+.formControls {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  z-index: 1;
+}
+
+.formControlsBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  background-color: #3b9cfe;
+  color: #ffffff;
+}
